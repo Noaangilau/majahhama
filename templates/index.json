@@ -1,16 +1,26 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "da-shop-hero",
       "settings": {
         "eyebrow": "Release log — entry 04 / SS26",
-        "heading": "<p>Drop 04:<br>Heavy goods.</p>",
-        "text": "<p>Twelve garments. 240GSM organic cotton, mitered collars, no stock held. Everything is cut when you order it — nothing before, nothing after.</p>",
+        "heading": "<h1><strong>Poly Marketplace</strong></h1>",
+        "text": "",
         "button_1_label": "Browse catalog",
         "button_1_link": "shopify://collections/all",
         "button_2_label": "Read the spec",
         "button_2_link": "",
-        "corner_code": "DS-001/HERO",
+        "image": "shopify://shop_images/ninjapod_12993396_b_SHMHSS_00_b_3569f78b-3e52-42e5-b958-ba480b86f1bf.jpg",
+        "corner_code": "SPOTLIGHT",
         "caption": "Heavy tee — mock-up, no photography",
         "badge_text": "Live now",
         "color_scheme": "scheme-1"
@@ -19,27 +29,27 @@
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
+        "collection": "all",
+        "products_to_show": 3,
         "title": "Featured catalog",
         "heading_size": "h1",
         "description": "",
         "show_description": false,
         "description_style": "body",
-        "collection": "all",
-        "products_to_show": 3,
         "columns_desktop": 3,
-        "color_scheme": "scheme-1",
+        "enable_desktop_slider": false,
         "full_width": false,
         "show_view_all": true,
         "view_all_style": "link",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
-        "image_ratio": "square",
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
         "image_shape": "default",
-        "show_secondary_image": false,
+        "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,
-        "quick_add": "none",
+        "quick_add": "standard",
         "columns_mobile": "2",
+        "swipe_on_mobile": true,
         "padding_top": 48,
         "padding_bottom": 12
       }
@@ -61,10 +71,15 @@
           }
         },
         "email_form": {
-          "type": "email_form"
+          "type": "email_form",
+          "settings": {}
         }
       },
-      "block_order": ["eyebrow", "heading", "email_form"],
+      "block_order": [
+        "eyebrow",
+        "heading",
+        "email_form"
+      ],
       "settings": {
         "color_scheme": "scheme-6",
         "full_width": false,
