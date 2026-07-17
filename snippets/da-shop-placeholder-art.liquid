@@ -1,0 +1,30 @@
+{% comment %}
+  Renders the DA SHOP placeholder garment art: diagonal stripes + tee glyph,
+  with an optional corner code and caption. Used as the image fallback
+  everywhere a real product photo isn't available yet.
+
+  Accepts:
+  - corner_code: {String} code shown top-right, e.g. "DS-001" (optional)
+  - caption: {String} caption shown bottom-left (optional)
+  - badge_text: {String} badge label shown top-left (optional)
+  - badge_accent: {Boolean} use accent background for the badge instead of ink (optional)
+  - glyph_width: {String} width of the tee glyph, e.g. "40%" (optional, default "40%")
+  - reverse: {Boolean} mirror the stripes/glyph for a "back view" (optional)
+
+  Usage:
+  {% render 'da-shop-placeholder-art', corner_code: 'DS-001', caption: 'Placeholder garment art' %}
+{% endcomment %}
+<div class="da-placeholder-art{% if reverse %} da-placeholder-art--reverse{% endif %}">
+  <svg class="da-placeholder-art__glyph" viewBox="0 0 90 70" style="width: {{ glyph_width | default: '40%' }};" fill="currentColor">
+    <path d="M28 4 L38 0 C40 8 50 8 52 0 L62 4 L74 16 L66 26 L60 21 L60 66 L30 66 L30 21 L24 26 L16 16 Z"></path>
+  </svg>
+  {%- if corner_code -%}
+    <div class="da-placeholder-art__code">{{ corner_code }}</div>
+  {%- endif -%}
+  {%- if badge_text -%}
+    <div class="da-badge{% if badge_accent %} da-badge--accent{% endif %} da-placeholder-art__badge">{{ badge_text }}</div>
+  {%- endif -%}
+  {%- if caption -%}
+    <div class="da-placeholder-art__caption">{{ caption }}</div>
+  {%- endif -%}
+</div>

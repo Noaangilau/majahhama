@@ -1,0 +1,138 @@
+{% comment %}
+  Split-screen homepage hero: label + headline + copy + two buttons on the left,
+  a full-bleed image (or placeholder garment art) panel on the right.
+{% endcomment %}
+
+<div class="da-hero color-{{ section.settings.color_scheme }}">
+  <div class="da-hero__content">
+    {%- if section.settings.eyebrow != blank -%}
+      <div class="da-eyebrow">{{ section.settings.eyebrow }}</div>
+    {%- endif -%}
+    {%- if section.settings.heading != blank -%}
+      <h1 class="da-hero__heading">{{ section.settings.heading }}</h1>
+    {%- endif -%}
+    {%- if section.settings.text != blank -%}
+      <div class="da-hero__text rte">{{ section.settings.text }}</div>
+    {%- endif -%}
+    <div class="da-hero__buttons">
+      {%- if section.settings.button_1_label != blank -%}
+        <a href="{{ section.settings.button_1_link | default: '#' }}" class="da-btn da-btn--primary">
+          {{ section.settings.button_1_label }}
+        </a>
+      {%- endif -%}
+      {%- if section.settings.button_2_label != blank -%}
+        <a href="{{ section.settings.button_2_link | default: '#' }}" class="da-btn da-btn--outline">
+          {{ section.settings.button_2_label }}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+  <div class="da-hero__media">
+    {%- if section.settings.image != blank -%}
+      {{
+        section.settings.image
+        | image_url: width: 1600
+        | image_tag: class: 'da-hero__image', widths: '750, 1100, 1600', sizes: '50vw'
+      }}
+    {%- else -%}
+      {% render 'da-shop-placeholder-art',
+        corner_code: section.settings.corner_code,
+        caption: section.settings.caption,
+        badge_text: section.settings.badge_text,
+        badge_accent: true,
+        glyph_width: '46%'
+      %}
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "DA Shop hero",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow label",
+      "default": "Release log — entry 04 / SS26"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>Drop 04:<br>Heavy goods.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Body text",
+      "default": "<p>Twelve garments. 240GSM organic cotton, mitered collars, no stock held. Everything is cut when you order it — nothing before, nothing after.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Buttons"
+    },
+    {
+      "type": "text",
+      "id": "button_1_label",
+      "label": "Button 1 label",
+      "default": "Browse catalog"
+    },
+    {
+      "type": "url",
+      "id": "button_1_link",
+      "label": "Button 1 link"
+    },
+    {
+      "type": "text",
+      "id": "button_2_label",
+      "label": "Button 2 label",
+      "default": "Read the spec"
+    },
+    {
+      "type": "url",
+      "id": "button_2_link",
+      "label": "Button 2 link"
+    },
+    {
+      "type": "header",
+      "content": "Media panel"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image (optional, replaces placeholder art)"
+    },
+    {
+      "type": "text",
+      "id": "corner_code",
+      "label": "Corner code",
+      "default": "DS-001/HERO"
+    },
+    {
+      "type": "text",
+      "id": "caption",
+      "label": "Caption",
+      "default": "Heavy tee — mock-up, no photography"
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge text",
+      "default": "Live now"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    }
+  ],
+  "presets": [
+    {
+      "name": "DA Shop hero"
+    }
+  ]
+}
+{% endschema %}

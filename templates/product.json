@@ -1,0 +1,106 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title"
+        },
+        "price": {
+          "type": "price"
+        },
+        "made_to_order_banner": {
+          "type": "made_to_order_banner",
+          "settings": {
+            "text": "// Made to order — cut on demand, allow 5–7 days before dispatch"
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "none"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false
+          }
+        },
+        "spec_table": {
+          "type": "spec_table",
+          "settings": {
+            "heading": "Sizing & Fit",
+            "open_by_default": true,
+            "fallback_text": "Sizing details coming soon."
+          }
+        },
+        "garment_weight": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Garment Weight (240GSM)",
+            "icon": "none",
+            "content": "<p>Cut from 240GSM ringspun organic cotton — a mid-heavy jersey that holds its shape after repeated washing. Pre-shrunk, enzyme-free finish.</p>"
+          }
+        },
+        "production_policy": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Ninja POD Production Policy",
+            "icon": "none",
+            "content": "<p>Every unit is produced on demand at the time of order. No warehouse stock is held. This eliminates overproduction but means all sales are final and dispatch takes 5–7 working days.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "price",
+        "made_to_order_banner",
+        "variant_picker",
+        "buy_buttons",
+        "spec_table",
+        "garment_weight",
+        "production_policy"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-1",
+        "media_position": "left",
+        "gallery_layout": "stacked",
+        "media_size": "large",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "image_zoom": "none",
+        "mobile_thumbnails": "hide",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 0,
+        "padding_bottom": 12
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 3,
+        "columns_desktop": 3,
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "columns_mobile": "2",
+        "padding_top": 48,
+        "padding_bottom": 28
+      }
+    }
+  },
+  "order": [
+    "main",
+    "related-products"
+  ]
+}

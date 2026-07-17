@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--accent:oklch(0.55 0.15 30);}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:#f5f1ea;color:#0a0a0a;}
+body{font-family:Inter,'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;line-height:1.5;}
+a{color:#0a0a0a;text-decoration:none;}
+a:hover{color:var(--accent);}
+input{outline:none;}
+@keyframes tick{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+</style>
+</helmet>
+
+<sc-if value="{{ showTicker }}" hint-placeholder-val="{{ true }}">
+<div style="background:#0a0a0a;color:#f5f1ea;overflow:hidden;padding:7px 0;white-space:nowrap;">
+  <div style="display:inline-block;animation:tick 28s linear infinite;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;">
+    <span>{{ tickerText }}</span><span>{{ tickerText }}</span>
+  </div>
+</div>
+</sc-if>
+
+<div style="position:sticky;top:0;z-index:50;background:#f5f1ea;border-bottom:1px solid #0a0a0a;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 24px;height:52px;" data-screen-label="Header">
+  <a href="#" onClick="{{ goHome }}" style="font-family:Archivo,sans-serif;font-weight:900;font-size:17px;letter-spacing:-0.02em;text-transform:uppercase;justify-self:start;">DA&nbsp;SHOP</a>
+  <div style="display:flex;gap:28px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;">
+    <a href="#" onClick="{{ goCatalog }}" style="border-bottom:1px solid transparent;" style-hover="border-bottom:1px solid #0a0a0a;">Shop</a>
+    <a href="#" onClick="{{ noop }}" style="border-bottom:1px solid transparent;" style-hover="border-bottom:1px solid #0a0a0a;">Info</a>
+    <a href="#" onClick="{{ noop }}" style="border-bottom:1px solid transparent;" style-hover="border-bottom:1px solid #0a0a0a;">Archive</a>
+  </div>
+  <a href="#" onClick="{{ openCart }}" style="justify-self:end;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;display:flex;align-items:center;gap:8px;">
+    <span>Cart</span><span style="background:#0a0a0a;color:#f5f1ea;padding:2px 6px;">{{ cartCountStr }}</span>
+  </a>
+</div>
+
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+<div data-screen-label="Homepage">
+  <div style="display:grid;grid-template-columns:1.1fr 1fr;border-bottom:1px solid #0a0a0a;">
+    <div style="padding:56px 48px;display:flex;flex-direction:column;justify-content:center;gap:24px;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#6b6b6b;">Release log — entry 04 / SS26</div>
+      <h1 style="font-family:Archivo,sans-serif;font-weight:900;font-size:clamp(56px,7.5vw,104px);line-height:0.95;letter-spacing:-0.02em;text-transform:uppercase;margin:0;">Drop 04:<br>Heavy goods.</h1>
+      <p style="max-width:420px;margin:0;color:#2a2a2a;">Twelve garments. 240GSM organic cotton, mitered collars, no stock held. Everything is cut when you order it — nothing before, nothing after.</p>
+      <div style="display:flex;gap:12px;">
+        <a href="#" onClick="{{ goCatalog }}" style="background:#0a0a0a;color:#f5f1ea;border:1px solid #0a0a0a;padding:13px 26px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;" style-hover="background:var(--accent);border-color:var(--accent);color:#ffffff;">Browse catalog</a>
+        <a href="#" onClick="{{ openFirstProduct }}" style="background:transparent;color:#0a0a0a;border:1px solid #0a0a0a;padding:13px 26px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;" style-hover="background:#0a0a0a;color:#f5f1ea;">Read the spec</a>
+      </div>
+    </div>
+    <div style="border-left:1px solid #0a0a0a;position:relative;background:repeating-linear-gradient(45deg,#eee8dc 0,#eee8dc 10px,#f5f1ea 10px,#f5f1ea 20px);min-height:520px;display:flex;align-items:center;justify-content:center;">
+      <svg viewBox="0 0 90 70" style="width:46%;opacity:0.16;" fill="#0a0a0a"><path d="M28 4 L38 0 C40 8 50 8 52 0 L62 4 L74 16 L66 26 L60 21 L60 66 L30 66 L30 21 L24 26 L16 16 Z"></path></svg>
+      <div style="position:absolute;top:14px;right:16px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;">DS-001/HERO</div>
+      <div style="position:absolute;bottom:14px;left:16px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:#6b6b6b;">Heavy tee — mock-up, no photography</div>
+      <div style="position:absolute;top:14px;left:16px;background:var(--accent);color:#ffffff;padding:3px 8px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;">Live now</div>
+    </div>
+  </div>
+
+  <div style="padding:0 24px;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid #0a0a0a;padding:48px 0 12px;">
+      <h2 style="font-family:Archivo,sans-serif;font-weight:900;font-size:44px;line-height:0.95;letter-spacing:-0.02em;text-transform:uppercase;margin:0;">Featured catalog</h2>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#6b6b6b;">03 of 12 items — <a href="#" onClick="{{ goCatalog }}" style="color:#0a0a0a;text-decoration:underline;">view all</a></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);border-left:1px solid #0a0a0a;">
+      <sc-for list="{{ featured }}" as="p" hint-placeholder-count="3">
+        <div onClick="{{ p.open }}" style="border-right:1px solid #0a0a0a;border-bottom:1px solid #0a0a0a;cursor:pointer;background:#f5f1ea;" style-hover="background:#eee8dc;">
+          <div style="position:relative;aspect-ratio:1;background:repeating-linear-gradient(45deg,#eee8dc 0,#eee8dc 9px,#f5f1ea 9px,#f5f1ea 18px);border-bottom:1px solid #d9d4ca;display:flex;align-items:center;justify-content:center;">
+            <svg viewBox="0 0 90 70" style="width:38%;opacity:0.16;" fill="#0a0a0a"><path d="M28 4 L38 0 C40 8 50 8 52 0 L62 4 L74 16 L66 26 L60 21 L60 66 L30 66 L30 21 L24 26 L16 16 Z"></path></svg>
+            <div style="position:absolute;top:10px;right:12px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;">{{ p.code }}</div>
+            <sc-if value="{{ p.hasBadge }}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute;top:10px;left:12px;background:{{ p.badgeBg }};color:#ffffff;padding:3px 8px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;">{{ p.badge }}</div>
+            </sc-if>
+            <div style="position:absolute;bottom:10px;left:12px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:#9a9a9a;">Placeholder garment art</div>
+          </div>
+          <div style="padding:14px 16px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
+            <div>
+              <div style="font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:0.04em;">{{ p.name }}</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#6b6b6b;margin-top:3px;">{{ p.fitLab }}</div>
+            </div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.08em;">{{ p.priceStr }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="padding:72px 24px;display:flex;justify-content:center;">
+    <div style="border:1px solid #0a0a0a;max-width:840px;width:100%;padding:36px 40px;background:#ffffff;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#6b6b6b;">Form 88-A — Mailing list declaration</div>
+      <div style="font-family:Archivo,sans-serif;font-weight:900;font-size:32px;letter-spacing:-0.02em;line-height:0.95;text-transform:uppercase;margin:10px 0 26px;">Get the release log</div>
+      <sc-if value="{{ notSubscribed }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;gap:16px;align-items:flex-end;">
+          <div style="flex:1;">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:#6b6b6b;margin-bottom:6px;">Electronic mail address *</div>
+            <input type="email" placeholder="OPERATOR@EXAMPLE.COM" style="width:100%;border:none;border-bottom:1px solid #0a0a0a;background:transparent;padding:8px 0;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;">
+          </div>
+          <a href="#" onClick="{{ subscribe }}" style="background:transparent;color:#0a0a0a;border:1px solid #0a0a0a;padding:11px 24px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;" style-hover="background:#0a0a0a;color:#f5f1ea;">Submit</a>
+        </div>
+      </sc-if>
+      <sc-if value="{{ subscribed }}" hint-placeholder-val="{{ false }}">
+        <div style="border:1px solid var(--accent);color:var(--accent);padding:12px 16px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;">Logged. Confirmation dispatched.</div>
+      </sc-if>
+      <p style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:#9a9a9a;margin:22px 0 0;line-height:1.7;">By submitting this form the undersigned consents to receive drop announcements, restock notices and production bulletins. Frequency: low. Unsubscribe: any time. No data sold, traded or otherwise manifested to third parties.</p>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isCatalog }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="Catalog">
+  <div style="padding:0 24px;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid #0a0a0a;padding:44px 0 12px;">
+      <h1 style="font-family:Archivo,sans-serif;font-weight:900;font-size:56px;line-height:0.95;letter-spacing:-0.02em;text-transform:uppercase;margin:0;">Catalog</h1>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#6b6b6b;">{{ catalogCountStr }} items indexed</div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:220px 1fr;padding:0 24px;">
+    <div style="border-right:1px solid #0a0a0a;padding:24px 20px 24px 0;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#6b6b6b;margin-bottom:12px;">Filter / Fit</div>
+      <div style="display:flex;flex-direction:column;gap:2px;margin-bottom:28px;">
+        <sc-for list="{{ fitFilters }}" as="f" hint-placeholder-count="3">
+          <div onClick="{{ f.toggle }}" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:5px 0;">
+            <div style="width:13px;height:13px;border:1px solid #0a0a0a;background:{{ f.boxBg }};"></div>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;">{{ f.label }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#6b6b6b;margin-bottom:12px;">Filter / Size</div>
+      <div style="display:flex;flex-direction:column;gap:2px;margin-bottom:28px;">
+        <sc-for list="{{ sizeFilters }}" as="f" hint-placeholder-count="4">
+          <div onClick="{{ f.toggle }}" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:5px 0;">
+            <div style="width:13px;height:13px;border:1px solid #0a0a0a;background:{{ f.boxBg }};"></div>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;">{{ f.label }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <a href="#" onClick="{{ clearFilters }}" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;text-decoration:underline;color:#6b6b6b;">Reset all</a>
+    </div>
+    <div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);border-left:1px solid #0a0a0a;">
+        <sc-for list="{{ catalog }}" as="p" hint-placeholder-count="6">
+          <div onClick="{{ p.open }}" style="border-right:1px solid #0a0a0a;border-bottom:1px solid #0a0a0a;cursor:pointer;background:#f5f1ea;" style-hover="background:#eee8dc;">
+            <div style="position:relative;aspect-ratio:1;background:repeating-linear-gradient(45deg,#eee8dc 0,#eee8dc 9px,#f5f1ea 9px,#f5f1ea 18px);border-bottom:1px solid #d9d4ca;display:flex;align-items:center;justify-content:center;">
+              <svg viewBox="0 0 90 70" style="width:38%;opacity:0.16;" fill="#0a0a0a"><path d="M28 4 L38 0 C40 8 50 8 52 0 L62 4 L74 16 L66 26 L60 21 L60 66 L30 66 L30 21 L24 26 L16 16 Z"></path></svg>
+              <div style="position:absolute;top:10px;right:12px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;">{{ p.code }}</div>
+              <sc-if value="{{ p.hasBadge }}" hint-placeholder-val="{{ false }}">
+                <div style="position:absolute;top:10px;left:12px;background:{{ p.badgeBg }};color:#ffffff;padding:3px 8px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;">{{ p.badge }}</div>
+              </sc-if>
+              <div style="position:absolute;bottom:10px;left:12px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:#9a9a9a;">Placeholder garment art</div>
+            </div>
+            <div style="padding:14px 16px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
+              <div>
+                <div style="font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:0.04em;">{{ p.name }}</div>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#6b6b6b;margin-top:3px;">{{ p.fitLab }}</div>
+              </div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.08em;">{{ p.priceStr }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display:flex;justify-content:center;align-items:center;gap:24px;padding:28px 0 48px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;">
+        <a href="#" onClick="{{ prevPage }}" style="color:#6b6b6b;" style-hover="color:#0a0a0a;">&lt; Prev</a>
+        <span>{{ pageStr }}</span>
+        <a href="#" onClick="{{ nextPage }}" style="color:#6b6b6b;" style-hover="color:#0a0a0a;">Next &gt;</a>
+      </div>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isProduct }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="Product detail" style="display:grid;grid-template-columns:1.1fr 1fr;align-items:start;">
+  <div style="border-right:1px solid #0a0a0a;">
+    <div style="position:relative;aspect-ratio:4/4.6;background:repeating-linear-gradient(45deg,#eee8dc 0,#eee8dc 10px,#f5f1ea 10px,#f5f1ea 20px);border-bottom:1px solid #0a0a0a;display:flex;align-items:center;justify-content:center;">
+      <svg viewBox="0 0 90 70" style="width:44%;opacity:0.16;" fill="#0a0a0a"><path d="M28 4 L38 0 C40 8 50 8 52 0 L62 4 L74 16 L66 26 L60 21 L60 66 L30 66 L30 21 L24 26 L16 16 Z"></path></svg>
+      <div style="position:absolute;top:14px;right:16px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;">{{ pCode }}/F</div>
+      <div style="position:absolute;bottom:14px;left:16px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:#6b6b6b;">Front view — mock-up</div>
+    </div>
+    <div style="position:relative;aspect-ratio:4/4.6;background:repeating-linear-gradient(-45deg,#eee8dc 0,#eee8dc 10px,#f5f1ea 10px,#f5f1ea 20px);border-bottom:1px solid #0a0a0a;display:flex;align-items:center;justify-content:center;">
+      <svg viewBox="0 0 90 70" style="width:44%;opacity:0.16;transform:scaleX(-1);" fill="#0a0a0a"><path d="M28 4 L38 0 C40 8 50 8 52 0 L62 4 L74 16 L66 26 L60 21 L60 66 L30 66 L30 21 L24 26 L16 16 Z"></path></svg>
+      <div style="position:absolute;top:14px;right:16px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;">{{ pCode }}/B</div>
+      <div style="position:absolute;bottom:14px;left:16px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:#6b6b6b;">Back view — mock-up</div>
+    </div>
+  </div>
+  <div style="position:sticky;top:52px;padding:40px 40px 56px;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:#6b6b6b;margin-bottom:14px;"><a href="#" onClick="{{ goCatalog }}" style="text-decoration:underline;color:#6b6b6b;">Catalog</a> / {{ pCode }}</div>
+    <h1 style="font-family:Archivo,sans-serif;font-weight:900;font-size:52px;line-height:0.95;letter-spacing:-0.02em;text-transform:uppercase;margin:0 0 14px;">{{ pName }}</h1>
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:22px;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:15px;letter-spacing:0.1em;">{{ pPriceStr }}</div>
+      <sc-if value="{{ pHasBadge }}" hint-placeholder-val="{{ false }}">
+        <div style="background:{{ pBadgeBg }};color:#ffffff;padding:3px 8px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;">{{ pBadge }}</div>
+      </sc-if>
+    </div>
+    <div style="background:var(--accent);color:#ffffff;padding:11px 14px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.13em;text-transform:uppercase;margin-bottom:26px;">// Made to order — cut on demand, allow 5–7 days before dispatch</div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:#6b6b6b;margin-bottom:8px;">Select size</div>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:16px;">
+      <sc-for list="{{ sizes }}" as="s" hint-placeholder-count="5">
+        <div onClick="{{ s.pick }}" style="border:1px solid #0a0a0a;text-align:center;padding:12px 0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;background:{{ s.bg }};color:{{ s.fg }};">{{ s.label }}</div>
+      </sc-for>
+    </div>
+    <sc-if value="{{ pAvailable }}" hint-placeholder-val="{{ true }}">
+      <a href="#" onClick="{{ addToCart }}" style="display:block;text-align:center;background:#0a0a0a;color:#f5f1ea;border:1px solid #0a0a0a;padding:16px 0;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;margin-bottom:32px;" style-hover="background:var(--accent);border-color:var(--accent);color:#ffffff;">Add to cart — {{ pPriceStr }}</a>
+    </sc-if>
+    <sc-if value="{{ pSoldOut }}" hint-placeholder-val="{{ false }}">
+      <div style="display:block;text-align:center;background:#eee8dc;color:#9a9a9a;border:1px solid #d9d4ca;padding:16px 0;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;margin-bottom:32px;">Sold out — production closed</div>
+    </sc-if>
+    <div style="border-top:1px solid #0a0a0a;">
+      <sc-for list="{{ accordions }}" as="a" hint-placeholder-count="3">
+        <div style="border-bottom:1px solid #0a0a0a;">
+          <div onClick="{{ a.toggle }}" style="display:flex;justify-content:space-between;align-items:center;padding:14px 0;cursor:pointer;">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;">{{ a.title }}</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:13px;">{{ a.sign }}</span>
+          </div>
+          <sc-if value="{{ a.open }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:0 0 18px;">
+              <sc-if value="{{ a.showSpec }}" hint-placeholder-val="{{ false }}">
+                <div style="border-top:1px solid #d9d4ca;">
+                  <sc-for list="{{ specRows }}" as="r" hint-placeholder-count="5">
+                    <div style="display:grid;grid-template-columns:150px 1fr;gap:16px;padding:9px 0;border-bottom:1px solid #d9d4ca;">
+                      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#6b6b6b;">{{ r.k }}</div>
+                      <div style="font-size:13px;">{{ r.v }}</div>
+                    </div>
+                  </sc-for>
+                </div>
+              </sc-if>
+              <sc-if value="{{ a.showBody }}" hint-placeholder-val="{{ true }}">
+                <p style="margin:0;font-size:13px;color:#2a2a2a;max-width:440px;">{{ a.body }}</p>
+              </sc-if>
+            </div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+<div style="background:#0a0a0a;color:#f5f1ea;padding:56px 24px 32px;" data-screen-label="Footer">
+  <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:32px;padding-bottom:48px;border-bottom:1px solid #2a2a2a;">
+    <div style="font-family:Archivo,sans-serif;font-weight:900;font-size:64px;line-height:0.95;letter-spacing:-0.02em;text-transform:uppercase;">Da Shop</div>
+    <div style="display:flex;flex-direction:column;gap:10px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;">
+      <div style="color:#6b6b6b;margin-bottom:4px;">Index</div>
+      <a href="#" onClick="{{ goCatalog }}" style="color:#f5f1ea;">Shop</a>
+      <a href="#" onClick="{{ noop }}" style="color:#f5f1ea;">Info</a>
+      <a href="#" onClick="{{ noop }}" style="color:#f5f1ea;">Archive</a>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;">
+      <div style="color:#6b6b6b;margin-bottom:4px;">Legal</div>
+      <a href="#" onClick="{{ noop }}" style="color:#f5f1ea;">Shipping</a>
+      <a href="#" onClick="{{ noop }}" style="color:#f5f1ea;">Returns</a>
+      <a href="#" onClick="{{ noop }}" style="color:#f5f1ea;">Privacy</a>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;padding-top:20px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:#6b6b6b;">
+    <span>© 2026 Da Shop — All goods made to order</span>
+    <span>REV 04.1 / PRINTED ON DEMAND</span>
+  </div>
+</div>
+
+<sc-if value="{{ drawerOpen }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="Cart drawer">
+  <div onClick="{{ closeCart }}" style="position:fixed;inset:0;background:rgba(10,10,10,0.45);z-index:98;"></div>
+  <div style="position:fixed;top:0;right:0;bottom:0;width:35%;min-width:400px;background:#ffffff;border-left:3px solid #0a0a0a;z-index:99;display:flex;flex-direction:column;">
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:18px 24px;border-bottom:1px solid #0a0a0a;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;font-weight:700;">Your cart [{{ cartCountStr }} items]</div>
+      <a href="#" onClick="{{ closeCart }}" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;text-decoration:underline;">Close</a>
+    </div>
+    <div style="flex:1;overflow-y:auto;">
+      <sc-if value="{{ cartEmpty }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:40px 24px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#6b6b6b;">Cart is empty. Nothing manifested.</div>
+      </sc-if>
+      <sc-for list="{{ cartItems }}" as="c" hint-placeholder-count="2">
+        <div style="display:flex;gap:16px;padding:18px 24px;border-bottom:1px solid #d9d4ca;align-items:center;">
+          <div style="width:64px;height:64px;flex-shrink:0;border:1px solid #d9d4ca;background:repeating-linear-gradient(45deg,#eee8dc 0,#eee8dc 6px,#f5f1ea 6px,#f5f1ea 12px);display:flex;align-items:center;justify-content:center;">
+            <svg viewBox="0 0 90 70" style="width:60%;opacity:0.16;" fill="#0a0a0a"><path d="M28 4 L38 0 C40 8 50 8 52 0 L62 4 L74 16 L66 26 L60 21 L60 66 L30 66 L30 21 L24 26 L16 16 Z"></path></svg>
+          </div>
+          <div style="flex:1;">
+            <div style="font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:0.04em;">{{ c.name }}</div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:#6b6b6b;margin-top:2px;">{{ c.code }} / Size {{ c.size }}</div>
+            <div style="display:flex;align-items:center;gap:10px;margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:11px;">
+              <a href="#" onClick="{{ c.dec }}" style="border:1px solid #0a0a0a;width:20px;height:20px;display:flex;align-items:center;justify-content:center;" style-hover="background:#0a0a0a;color:#f5f1ea;">−</a>
+              <span>{{ c.qty }}</span>
+              <a href="#" onClick="{{ c.inc }}" style="border:1px solid #0a0a0a;width:20px;height:20px;display:flex;align-items:center;justify-content:center;" style-hover="background:#0a0a0a;color:#f5f1ea;">+</a>
+            </div>
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.08em;">{{ c.lineStr }}</div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="border-top:1px solid #0a0a0a;padding:20px 24px;">
+      <div style="display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:8px;">
+        <span>Subtotal</span><span>{{ subtotalStr }}</span>
+      </div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:#9a9a9a;margin-bottom:16px;">Shipping + duties calculated at checkout. Made-to-order goods are final sale.</div>
+      <a href="#" onClick="{{ noop }}" style="display:block;text-align:center;background:#0a0a0a;color:#f5f1ea;border:1px solid #0a0a0a;padding:18px 0;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.18em;text-transform:uppercase;" style-hover="background:var(--accent);border-color:var(--accent);color:#ffffff;">Checkout — {{ subtotalStr }}</a>
+    </div>
+  </div>
+</div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 1440}, &quot;accent&quot;: {&quot;editor&quot;: &quot;color&quot;, &quot;default&quot;: &quot;oklch(0.55 0.15 30)&quot;, &quot;options&quot;: [&quot;#b04030&quot;, &quot;#31538f&quot;, &quot;#5a6532&quot;, &quot;#0a0a0a&quot;], &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Theme&quot;}, &quot;showTicker&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Layout&quot;}, &quot;startScreen&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;default&quot;: &quot;home&quot;, &quot;options&quot;: [&quot;home&quot;, &quot;catalog&quot;, &quot;product&quot;], &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Layout&quot;}}">
+class Component extends DCLogic {
+  state = { screen: null, product: 0, size: 'M', drawer: false, acc: [true, false, false], fits: [], szs: [], page: 1, subscribed: false,
+    cart: [{ id: 0, size: 'M', qty: 1 }, { id: 7, size: 'L', qty: 1 }] };
+
+  products = [
+    { code: 'DS-001', name: 'Heavy Tee', price: 45, fit: 'Heavy', badge: 'Heavyweight', accentBadge: false },
+    { code: 'DS-002', name: 'Boxy Tee', price: 42, fit: 'Boxy' },
+    { code: 'DS-003', name: 'Work Shirt', price: 88, fit: 'Classic' },
+    { code: 'DS-004', name: 'Cargo Pant', price: 110, fit: 'Classic', badge: 'Sold out', soldOut: true },
+    { code: 'DS-005', name: 'Chore Coat', price: 140, fit: 'Boxy', badge: 'Pre-order', accentBadge: true },
+    { code: 'DS-006', name: 'Longsleeve', price: 54, fit: 'Heavy' },
+    { code: 'DS-007', name: 'Canvas Tote', price: 28, fit: 'Classic' },
+    { code: 'DS-008', name: 'Deck Hood', price: 96, fit: 'Heavy', badge: 'Heavyweight' },
+    { code: 'DS-009', name: 'Pocket Tee', price: 46, fit: 'Boxy' },
+    { code: 'DS-010', name: 'Painter Pant', price: 104, fit: 'Classic' },
+    { code: 'DS-011', name: 'Thermal', price: 58, fit: 'Heavy', badge: 'Pre-order', accentBadge: true },
+    { code: 'DS-012', name: 'Watch Cap', price: 32, fit: 'Classic' }
+  ];
+
+  fmt(n) { return '$' + n.toFixed(2); }
+  pad(n) { return String(n).padStart(2, '0'); }
+  getScreen() { return this.state.screen ?? (this.props.startScreen ?? 'home'); }
+
+  componentDidMount() { this.applyAccent(); }
+  componentDidUpdate() { this.applyAccent(); }
+  applyAccent() {
+    document.documentElement.style.setProperty('--accent', this.props.accent ?? 'oklch(0.55 0.15 30)');
+  }
+
+  go(screen, extra) {
+    this.setState(Object.assign({ screen: screen }, extra || {}));
+    window.scrollTo(0, 0);
+  }
+
+  card(p, i) {
+    return {
+      code: p.code, name: p.name, fitLab: p.fit + ' fit / 240GSM',
+      priceStr: this.fmt(p.price),
+      hasBadge: !!p.badge, badge: p.badge || '',
+      badgeBg: p.accentBadge ? 'var(--accent)' : '#0a0a0a',
+      open: (e) => { e.preventDefault(); this.go('product', { product: i, size: 'M', acc: [true, false, false] }); }
+    };
+  }
+
+  renderVals() {
+    const st = this.state, screen = this.getScreen();
+    const p = this.products[st.product];
+    const cards = this.products.map((pr, i) => this.card(pr, i));
+    const catalog = cards.filter((c, i) => {
+      const pr = this.products[i];
+      return st.fits.length === 0 || st.fits.includes(pr.fit);
+    });
+    const count = st.cart.reduce((a, c) => a + c.qty, 0);
+    const subtotal = st.cart.reduce((a, c) => a + c.qty * this.products[c.id].price, 0);
+    const prevent = (fn) => (e) => { e.preventDefault(); fn && fn(); };
+    const mkFilter = (list, key) => (label) => ({
+      label: label,
+      boxBg: this.state[key].includes(label) ? '#0a0a0a' : '#ffffff',
+      toggle: () => this.setState(s => ({ [key]: s[key].includes(label) ? s[key].filter(x => x !== label) : s[key].concat(label) }))
+    });
+    const accData = [
+      { title: 'Sizing & Fit', showSpec: true, body: '' },
+      { title: 'Garment Weight (240GSM)', body: 'Cut from 240GSM ringspun organic cotton — a mid-heavy jersey that holds its shape after repeated washing. Pre-shrunk, enzyme-free finish.' },
+      { title: 'Ninja POD Production Policy', body: 'Every unit is produced on demand at the time of order. No warehouse stock is held. This eliminates overproduction but means all sales are final and dispatch takes 5–7 working days.' }
+    ];
+    return {
+      showTicker: this.props.showTicker ?? true,
+      tickerText: '/// MADE TO ORDER — NO STOCK, NO WASTE /// WORLDWIDE SHIPPING /// DROP 04 LIVE NOW /// 240GSM ORGANIC COTTON ',
+      isHome: screen === 'home', isCatalog: screen === 'catalog', isProduct: screen === 'product',
+      goHome: prevent(() => this.go('home')),
+      goCatalog: prevent(() => this.go('catalog')),
+      openFirstProduct: prevent(() => this.go('product', { product: 0, size: 'M', acc: [true, false, false] })),
+      noop: prevent(),
+      cartCountStr: this.pad(count),
+      featured: cards.slice(0, 3),
+      catalog: catalog,
+      catalogCountStr: this.pad(catalog.length),
+      fitFilters: ['Boxy', 'Heavy', 'Classic'].map(mkFilter(st.fits, 'fits')),
+      sizeFilters: ['S', 'M', 'L', 'XL'].map(mkFilter(st.szs, 'szs')),
+      clearFilters: prevent(() => this.setState({ fits: [], szs: [] })),
+      pageStr: 'Page ' + this.pad(st.page) + ' of 03',
+      prevPage: prevent(() => this.setState(s => ({ page: Math.max(1, s.page - 1) }))),
+      nextPage: prevent(() => this.setState(s => ({ page: Math.min(3, s.page + 1) }))),
+      pCode: p.code, pName: p.name,
+      pPriceStr: this.fmt(p.price) + ' USD',
+      pHasBadge: !!p.badge, pBadge: p.badge || '',
+      pBadgeBg: p.accentBadge ? 'var(--accent)' : '#0a0a0a',
+      pAvailable: !p.soldOut, pSoldOut: !!p.soldOut,
+      sizes: ['S', 'M', 'L', 'XL', 'XXL'].map(sz => ({
+        label: sz,
+        bg: st.size === sz ? 'var(--accent)' : '#ffffff',
+        fg: st.size === sz ? '#ffffff' : '#0a0a0a',
+        pick: () => this.setState({ size: sz })
+      })),
+      addToCart: prevent(() => {
+        this.setState(s => {
+          const cart = s.cart.slice();
+          const ex = cart.findIndex(c => c.id === s.product && c.size === s.size);
+          if (ex >= 0) cart[ex] = Object.assign({}, cart[ex], { qty: cart[ex].qty + 1 });
+          else cart.push({ id: s.product, size: s.size, qty: 1 });
+          return { cart: cart, drawer: true };
+        });
+      }),
+      accordions: accData.map((a, i) => ({
+        title: a.title, sign: st.acc[i] ? '−' : '+',
+        open: st.acc[i], showSpec: !!a.showSpec, showBody: !a.showSpec, body: a.body,
+        toggle: () => this.setState(s => { const acc = s.acc.slice(); acc[i] = !acc[i]; return { acc: acc }; })
+      })),
+      specRows: [
+        { k: 'Fit', v: p.fit + ' — true to size, size up for oversize' },
+        { k: 'Fabric', v: '100% organic cotton, 240GSM' },
+        { k: 'Collar', v: 'Mitered neck collar, twin-needle bound' },
+        { k: 'Hem', v: 'Double-stitched, straight cut' },
+        { k: 'Origin', v: 'Cut & sewn on demand — Ninja POD' }
+      ],
+      openCart: prevent(() => this.setState({ drawer: true })),
+      closeCart: prevent(() => this.setState({ drawer: false })),
+      drawerOpen: st.drawer,
+      cartEmpty: st.cart.length === 0,
+      cartItems: st.cart.map((c, idx) => {
+        const pr = this.products[c.id];
+        return {
+          name: pr.name, code: pr.code, size: c.size, qty: c.qty,
+          lineStr: this.fmt(pr.price * c.qty),
+          inc: prevent(() => this.setState(s => {
+            const cart = s.cart.slice();
+            cart[idx] = Object.assign({}, cart[idx], { qty: cart[idx].qty + 1 });
+            return { cart: cart };
+          })),
+          dec: prevent(() => this.setState(s => {
+            const cart = s.cart.slice();
+            if (cart[idx].qty <= 1) cart.splice(idx, 1);
+            else cart[idx] = Object.assign({}, cart[idx], { qty: cart[idx].qty - 1 });
+            return { cart: cart };
+          }))
+        };
+      }),
+      subtotalStr: this.fmt(subtotal) + ' USD',
+      subscribed: st.subscribed, notSubscribed: !st.subscribed,
+      subscribe: prevent(() => this.setState({ subscribed: true }))
+    };
+  }
+}
+</script>
+</body>
+</html>

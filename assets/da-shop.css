@@ -1,0 +1,742 @@
+/* ==========================================================================
+   DA SHOP — utilitarian/industrial editorial skin, layered on top of Dawn.
+   Design tokens + component overrides. See docs/design-reference/HANDOFF.md.
+   ========================================================================== */
+
+:root {
+  --font-heading-family: 'DA Shop Archivo', sans-serif;
+  --font-heading-style: normal;
+  --font-heading-weight: 900;
+  --font-body-family: 'DA Shop Sans', sans-serif;
+  --font-body-style: normal;
+  --font-body-weight: 400;
+  --font-body-weight-bold: 600;
+  --font-mono-family: 'DA Shop Mono', monospace;
+
+  --ink: #0a0a0a;
+  --ink-2: #1a1a1a;
+  --ink-3: #2a2a2a;
+  --mute: #6b6b6b;
+  --mute-2: #9a9a9a;
+  --rule: #d9d4ca;
+  --rule-2: #ebe6dc;
+  --paper: #f5f1ea;
+  --paper-2: #eee8dc;
+  --white: #ffffff;
+  --accent: var(--da-accent, #b04030);
+}
+
+/* -------------------------------------------------------------------------
+   Reset: zero radius, no shadows, hairline rules everywhere
+   ------------------------------------------------------------------------- */
+* {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+body {
+  letter-spacing: normal;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h0, .h1, .h2, .h3, .h4, .h5 {
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+}
+
+/* mono "data voice": nav, prices, labels, badges, captions, specs, buttons, footer meta */
+.list-menu__item--link,
+.price,
+.price-item,
+.badge,
+.button,
+.button--full-width,
+.newsletter-form__button,
+.caption,
+.caption-large,
+.caption-with-letter-spacing,
+.facets__summary-label,
+.facets__label,
+.facet-checkbox__text,
+.pagination__item,
+.footer__copyright,
+.da-eyebrow,
+.da-btn,
+.da-corner-code,
+.da-placeholder-art__caption,
+.da-card-fit,
+.da-mto-banner,
+.da-accordion__title,
+.da-spec-table__key,
+.da-cart-count,
+.cart-item__name + *,
+.drawer__heading,
+.product-form__input--pill legend,
+.product-form__input--pill label {
+  font-family: var(--font-mono-family);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* -------------------------------------------------------------------------
+   Ticker
+   ------------------------------------------------------------------------- */
+.da-ticker {
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 7px 0;
+}
+
+.da-ticker__track {
+  display: inline-block;
+  animation: da-tick 28s linear infinite;
+  font-family: var(--font-mono-family);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.da-ticker__track span {
+  padding-right: 0;
+}
+
+@keyframes da-tick {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .da-ticker__track {
+    animation: none;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Header
+   ------------------------------------------------------------------------- */
+.header-wrapper {
+  background: rgb(var(--color-background));
+}
+
+.header__heading-link .h2,
+.header__heading-link {
+  font-family: var(--font-heading-family);
+  font-weight: 900;
+  font-size: 17px;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.header .list-menu--inline {
+  gap: 28px;
+}
+
+.header .list-menu__item--link {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+}
+
+.header .list-menu__item--link:hover {
+  border-bottom-color: var(--ink);
+}
+
+#cart-icon-bubble .cart-count-bubble {
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 0 !important;
+  font-family: var(--font-mono-family);
+}
+
+/* -------------------------------------------------------------------------
+   Buttons (Dawn + custom .da-btn)
+   ------------------------------------------------------------------------- */
+.button,
+.da-btn {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  padding: 13px 26px;
+  border-width: 1px;
+  transition: none;
+}
+
+.button--primary,
+.da-btn--primary {
+  background: var(--ink);
+  color: var(--paper);
+  border: 1px solid var(--ink);
+}
+
+.button--primary:hover,
+.da-btn--primary:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--white);
+}
+
+.da-btn--outline {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  display: inline-block;
+}
+
+.da-btn--outline:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* -------------------------------------------------------------------------
+   Hero (split-screen)
+   ------------------------------------------------------------------------- */
+.da-hero {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  border-bottom: 1px solid var(--ink);
+}
+
+@media screen and (max-width: 749px) {
+  .da-hero {
+    grid-template-columns: 1fr;
+  }
+}
+
+.da-hero__content {
+  padding: 56px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+}
+
+.da-eyebrow {
+  font-size: 11px;
+  color: var(--mute);
+}
+
+.da-hero__heading {
+  font-family: var(--font-heading-family);
+  font-weight: 900;
+  font-size: clamp(56px, 7.5vw, 104px);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.da-hero__text {
+  max-width: 420px;
+  color: var(--ink-3);
+}
+
+.da-hero__buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.da-hero__media {
+  border-left: 1px solid var(--ink);
+  position: relative;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 749px) {
+  .da-hero__media {
+    border-left: none;
+    border-top: 1px solid var(--ink);
+  }
+}
+
+.da-hero__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* -------------------------------------------------------------------------
+   Placeholder garment art
+   ------------------------------------------------------------------------- */
+.da-placeholder-art {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 260px;
+  background: repeating-linear-gradient(45deg, var(--paper-2) 0, var(--paper-2) 10px, var(--paper) 10px, var(--paper) 20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.da-placeholder-art--reverse {
+  background: repeating-linear-gradient(-45deg, var(--paper-2) 0, var(--paper-2) 10px, var(--paper) 10px, var(--paper) 20px);
+}
+
+.da-placeholder-art__glyph {
+  color: var(--ink);
+  opacity: 0.16;
+}
+
+.da-placeholder-art--reverse .da-placeholder-art__glyph {
+  transform: scaleX(-1);
+}
+
+.da-placeholder-art__code {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 10px;
+}
+
+.da-placeholder-art__badge {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+}
+
+.da-placeholder-art__caption {
+  position: absolute;
+  bottom: 10px;
+  left: 12px;
+  font-size: 9px;
+  color: var(--mute-2);
+}
+
+.da-badge {
+  background: var(--ink);
+  color: var(--white);
+  padding: 3px 8px;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+}
+
+.da-badge--accent {
+  background: var(--accent);
+}
+
+/* -------------------------------------------------------------------------
+   Featured catalog / collection grids + product card
+   ------------------------------------------------------------------------- */
+.collection__title,
+.section-header,
+.collection-hero {
+  border-bottom: 1px solid var(--ink);
+}
+
+.collection__title .title,
+.collection-hero__title {
+  font-family: var(--font-heading-family);
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.product-grid,
+#product-grid.product-grid {
+  border-left: 1px solid var(--ink);
+  border-top: 1px solid var(--ink);
+}
+
+.product-grid > li,
+#product-grid.product-grid > li {
+  border-right: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+}
+
+.card,
+.card__inner,
+.card__content {
+  background: transparent;
+}
+
+.card-wrapper:hover .card__inner {
+  background: var(--paper-2);
+}
+
+.card__media,
+.card__media .media {
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+
+.card__heading {
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.da-card-fit {
+  font-size: 10px;
+  color: var(--mute);
+  margin-top: 3px;
+}
+
+.card .price {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+
+.pagination__list {
+  gap: 24px;
+}
+
+.pagination__item {
+  font-size: 11px;
+  color: var(--mute);
+}
+
+.pagination__item--current {
+  color: var(--ink);
+}
+
+.pagination__item:hover {
+  color: var(--ink);
+}
+
+/* -------------------------------------------------------------------------
+   Newsletter ("legal form" treatment)
+   ------------------------------------------------------------------------- */
+.newsletter__wrapper {
+  border: 1px solid var(--ink);
+  background: var(--white);
+  max-width: 840px;
+}
+
+.newsletter__wrapper .title,
+.newsletter__wrapper h2 {
+  font-family: var(--font-heading-family);
+  text-transform: uppercase;
+}
+
+.newsletter__wrapper .newsletter__subheading {
+  font-family: var(--font-mono-family);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+
+.newsletter-form__field-wrapper .field {
+  border: none;
+}
+
+.newsletter-form__field-wrapper .field__input {
+  border: none;
+  border-bottom: 1px solid var(--ink);
+  background: transparent;
+  font-family: var(--font-mono-family);
+  text-transform: uppercase;
+}
+
+.newsletter-form__field-wrapper .field__label {
+  font-size: 10px;
+  color: var(--mute);
+}
+
+.newsletter-form__button {
+  background: transparent;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+}
+
+.newsletter-form__button:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.newsletter-form__message--success {
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+/* -------------------------------------------------------------------------
+   Facets (collection filters)
+   ------------------------------------------------------------------------- */
+.facets__label {
+  gap: 10px;
+}
+
+.facets__label svg {
+  color: var(--ink);
+}
+
+.facets__label .icon-checkmark {
+  display: none;
+}
+
+.facets__label.active svg:not(.icon-checkmark) rect {
+  fill: var(--ink);
+}
+
+.facets__reset,
+.active-facets__button-remove {
+  color: var(--mute);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+}
+
+/* -------------------------------------------------------------------------
+   Product page
+   ------------------------------------------------------------------------- */
+.product__media-wrapper {
+  border-right: 1px solid var(--ink);
+}
+
+.product__title h1,
+.product__title h2 {
+  font-family: var(--font-heading-family);
+  font-size: 52px;
+  text-transform: uppercase;
+}
+
+.price--large {
+  font-family: var(--font-mono-family);
+  font-size: 15px;
+  letter-spacing: 0.1em;
+}
+
+.da-mto-banner {
+  background: var(--accent);
+  color: var(--white);
+  padding: 11px 14px;
+  font-size: 10px;
+  letter-spacing: 0.13em;
+  margin: 16px 0 26px;
+}
+
+.product-form__input--pill ul {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+}
+
+.product-form__input--pill input[type='radio'] + label {
+  border: 1px solid var(--ink);
+  text-align: center;
+  padding: 12px 0;
+  background: var(--white);
+  color: var(--ink);
+  font-size: 11px;
+}
+
+.product-form__input--pill input[type='radio']:checked + label {
+  background: var(--accent);
+  color: var(--white);
+  border-color: var(--accent);
+}
+
+.product-form__submit {
+  padding: 16px 0;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+}
+
+.product-form__submit[disabled] {
+  background: var(--paper-2);
+  color: var(--mute-2);
+  border-color: var(--rule);
+}
+
+.da-accordion,
+.product__accordion {
+  border-top: 1px solid var(--ink);
+  margin-top: 0;
+}
+
+.da-accordion + .da-accordion,
+.product__accordion + .product__accordion {
+  border-top: none;
+}
+
+.da-accordion details,
+.product__accordion details {
+  border-bottom: 1px solid var(--ink);
+}
+
+.da-accordion summary,
+.product__accordion summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  cursor: pointer;
+  list-style: none;
+}
+
+.da-accordion summary::-webkit-details-marker,
+.product__accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+.da-accordion__title,
+.accordion__title {
+  font-size: 11px;
+}
+
+.da-accordion__sign::before {
+  content: '+';
+  font-family: var(--font-mono-family);
+  font-size: 13px;
+}
+
+details[open] > summary .da-accordion__sign::before {
+  content: '\2212';
+}
+
+.da-accordion__content,
+.accordion__content {
+  padding: 0 0 18px;
+}
+
+.da-accordion__body {
+  font-size: 13px;
+  color: var(--ink-3);
+  max-width: 440px;
+}
+
+.da-spec-table__row {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 16px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.da-spec-table__key {
+  font-size: 10px;
+  color: var(--mute);
+}
+
+.da-spec-table__value {
+  font-family: var(--font-body-family);
+  font-size: 13px;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+/* -------------------------------------------------------------------------
+   Cart drawer ("The Manifest")
+   ------------------------------------------------------------------------- */
+.cart-drawer .drawer__inner {
+  width: 35vw;
+  min-width: 400px;
+  max-width: 100vw;
+  border-left: 3px solid var(--ink);
+  background: var(--white);
+}
+
+.drawer__header {
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--ink);
+}
+
+.drawer__heading {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.da-cart-count {
+  font-weight: 400;
+}
+
+.cart-item {
+  border-bottom: 1px solid var(--rule);
+}
+
+.cart-item__media {
+  border: 1px solid var(--rule);
+}
+
+.cart-item__name {
+  font-family: var(--font-body-family);
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.quantity {
+  border: none;
+}
+
+.quantity__button {
+  border: 1px solid var(--ink);
+  width: 20px;
+  height: 20px;
+}
+
+.quantity__button:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.drawer__footer {
+  border-top: 1px solid var(--ink);
+  padding: 20px 24px;
+}
+
+.totals__total,
+.totals__total-value {
+  font-family: var(--font-mono-family);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.tax-note {
+  font-size: 9px;
+  color: var(--mute-2);
+}
+
+.cart__checkout-button {
+  padding: 18px 0;
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  background: var(--ink);
+  color: var(--paper);
+  border: 1px solid var(--ink);
+}
+
+.cart__checkout-button:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+/* -------------------------------------------------------------------------
+   Footer
+   ------------------------------------------------------------------------- */
+.footer {
+  border-top: none;
+}
+
+.footer__content-top {
+  border-bottom: 1px solid var(--ink-3);
+}
+
+.footer-block__brand-info .footer-block__heading {
+  font-family: var(--font-heading-family);
+  font-weight: 900;
+  font-size: 64px;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.footer-block__heading {
+  color: var(--mute);
+  font-size: 10px;
+  margin-bottom: 4px;
+}
+
+.footer-block__details-content a {
+  color: inherit;
+}
+
+.footer__copyright {
+  font-size: 9px;
+  color: var(--mute);
+}

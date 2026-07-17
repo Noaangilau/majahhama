@@ -1,0 +1,40 @@
+{%- if section.settings.enable -%}
+  <div class="da-ticker color-{{ section.settings.color_scheme }}">
+    <div class="da-ticker__track">
+      <span>{{ section.settings.text }}</span>
+      <span aria-hidden="true">{{ section.settings.text }}</span>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "DA Shop ticker",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable",
+      "label": "Show ticker",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Ticker text",
+      "default": "/// MADE TO ORDER — NO STOCK, NO WASTE /// WORLDWIDE SHIPPING /// DROP 04 LIVE NOW /// 240GSM ORGANIC COTTON"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-7"
+    }
+  ],
+  "presets": [
+    {
+      "name": "DA Shop ticker"
+    }
+  ]
+}
+{% endschema %}
